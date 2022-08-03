@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.header {
+    display: flex;
+    padding: 3vh;
+    background-color: wheat;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+
+
+.readBooks{
+    padding: 15px;
+    width: 70vw;
+    overflow: auto;
+    display: grid;
+    background-color: skyblue;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.book{
+    padding: 10px;
+    background-color: orange;
+    height: calc(24vh*1.6);
+    width: calc(5vw+100px);
+}
+#form{
+    display: none;
+}
+.addBook{
+    
+    width: max(50px,15vw);
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+.addBookSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
