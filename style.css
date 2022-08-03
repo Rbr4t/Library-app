@@ -39,7 +39,25 @@ body {
     width: calc(5vw+100px);
 }
 #form{
+    width: 25vw;
+    padding: 15px;
+    background-color: palegoldenrod;
     display: none;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+form>div{
+    display: flex;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+#checkbox{
+    justify-content: space-between;
 }
 .addBook{
     

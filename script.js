@@ -58,7 +58,8 @@ addBook.addEventListener('click', ()=>{
   console.log(form.style.display)
   if (form.style.display === 'none' || form.style.display === '') {
     // 👇️ this SHOWS the form
-    form.style.display = 'block';
+    form.style.display = 'flex'
+    form.style.flexDirection = 'column';
   } else {
     // 👇️ this HIDES the form
     form.style.display = 'none';
