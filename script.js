@@ -1,53 +1,58 @@
 let myLibrary = [];
 
+/*
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read
 
-    this.info = function(){
-        return `${title} was by ${author}, the book consists of ${pages} pages, ${read}`;
-    };
+    // this.info = function(){
+    //     return `${title} was by ${author}, the book consists of ${pages} pages, ${read}`;
+    // };
 }
+*/
 
 
-
-function addBookToLibrary() {
-
-}
-
-// addBookToLibrary() 
 
 
 function displayBooks(){
-  const books = document.querySelector('.readBooks'); //container div
+    // console.log([myLibrary])
+    let lastBook = myLibrary[myLibrary.length-1]
+    console.log("HI")
+    console.log(lastBook)
 
-  //we create a new book card
-  const newBook = document.createElement('div'); 
+    const books = document.querySelector('.readBooks'); //container div
 
-  const newBookh1 =  document.createElement('h1'); //h1 header
-  const h1 = document.createTextNode('Title')
-  newBookh1.appendChild(h1)
-  newBook.appendChild(newBookh1)
+    //we create a new book card
+    const newBook = document.createElement('div'); 
 
-  const newBookAuth = document.createElement('h2'); //h2 author nameplate
-  const auth = document.createTextNode('Author');
-  newBookAuth.appendChild(auth);
-  newBook.appendChild(newBookAuth);
+    const newBookh1 =  document.createElement('h1'); //h1 header
+    const h1 = document.createTextNode(lastBook.get('title'))
+    newBookh1.appendChild(h1)
+    newBook.appendChild(newBookh1)
 
-  const newBookPages = document.createElement('p'); // paragraph element
-  const pages = document.createTextNode('pages');
-  newBookPages.appendChild(pages);
-  newBook.appendChild(newBookPages)
+    const newBookAuth = document.createElement('h2'); //h2 author nameplate
+    const auth = document.createTextNode(lastBook.get('author'));
+    newBookAuth.appendChild(auth);
+    newBook.appendChild(newBookAuth);
 
-  const newBookRead = document.createElement('button'); //button element
-  newBookRead.textContent = 'Already read?';
-  newBook.appendChild(newBookRead)
+    const newBookPages = document.createElement('p'); // paragraph element
+    const pages = document.createTextNode(lastBook.get('pages'));
+    newBookPages.appendChild(pages);
+    newBook.appendChild(newBookPages)
 
-  newBook.classList.add('book');
-  books.appendChild(newBook);
+    const newBookRead = document.createElement('button'); //button element
+    newBookRead.textContent = 'Already read?';
+    newBook.appendChild(newBookRead)
+
+    newBook.classList.add('book');
+    books.appendChild(newBook);
 }
+
+    
+  
+
 
 
 
@@ -58,10 +63,23 @@ addBook.addEventListener('click', ()=>{
   console.log(form.style.display)
   if (form.style.display === 'none' || form.style.display === '') {
     // 👇️ this SHOWS the form
-    form.style.display = 'flex'
-    form.style.flexDirection = 'column';
+    form.style.display = 'flex';
+    
   } else {
     // 👇️ this HIDES the form
     form.style.display = 'none';
   }
+})
+
+
+
+//eventlistener for the submit button, when activated adds new card to the stack.
+const submit = document.querySelector('.submit');
+submit.addEventListener('click', function(e){
+    const form = document.querySelector('form');
+    const data = new FormData(form);
+    myLibrary.push(data)
+    
+    
+    displayBooks()
 })
