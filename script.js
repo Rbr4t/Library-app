@@ -1,26 +1,12 @@
 let myLibrary = [];
-
-/*
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read
-
-    // this.info = function(){
-    //     return `${title} was by ${author}, the book consists of ${pages} pages, ${read}`;
-    // };
-}
-*/
+let idNum = 0;
 
 
 
 
 function displayBooks(){
-    // console.log([myLibrary])
+    
     let lastBook = myLibrary[myLibrary.length-1]
-    console.log("HI")
-    console.log(lastBook)
 
     const books = document.querySelector('.readBooks'); //container div
 
@@ -30,7 +16,7 @@ function displayBooks(){
     const newBookh1 =  document.createElement('h1'); //h1 header
     const h1 = document.createTextNode(lastBook.get('title'))
     newBookh1.appendChild(h1)
-    newBook.appendChild(newBookh1)
+    newBook.appendChild(newBookh1);
 
     const newBookAuth = document.createElement('h2'); //h2 author nameplate
     const auth = document.createTextNode(lastBook.get('author'));
@@ -40,14 +26,23 @@ function displayBooks(){
     const newBookPages = document.createElement('p'); // paragraph element
     const pages = document.createTextNode(lastBook.get('pages'));
     newBookPages.appendChild(pages);
-    newBook.appendChild(newBookPages)
+    newBook.appendChild(newBookPages);
 
     const newBookRead = document.createElement('button'); //button element
     newBookRead.textContent = 'Already read?';
-    newBook.appendChild(newBookRead)
+    newBook.appendChild(newBookRead);
 
+    const deleteButton = document.createElement('button'); //button element
+    deleteButton.classList.add('delete')
+    deleteButton.setAttribute('id', idNum)
+    deleteButton.textContent = 'Delete';
+    newBook.appendChild(deleteButton);
+
+    newBook.setAttribute('id', idNum);
+    idNum += 1;
     newBook.classList.add('book');
     books.appendChild(newBook);
+    addEventLs()
 }
 
     
@@ -79,7 +74,22 @@ submit.addEventListener('click', function(e){
     const form = document.querySelector('form');
     const data = new FormData(form);
     myLibrary.push(data)
-    
-    
     displayBooks()
 })
+
+// add eventlistener to the delete buttons on cards and delete the card when clicked
+function addEventLs(){
+  const deleteButtons = document.querySelectorAll('.delete')[document.querySelectorAll('.delete').length -1];
+  deleteButtons.addEventListener('click', (e) => {
+    console.log(e.target.id)
+    deleteCard(e.target.id);
+})
+}
+
+function deleteCard(id){
+  const divToRemove = document.getElementById(id);
+  divToRemove.remove()
+  
+  myLibrary.splice(-1);
+  console.log(myLibrary)
+}
