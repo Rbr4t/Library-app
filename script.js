@@ -30,6 +30,14 @@ function displayBooks(){
 
     const newBookRead = document.createElement('button'); //button element
     newBookRead.textContent = 'Already read?';
+    console.log(lastBook.get('read?')=='on')
+    newBookRead.classList.add('readbutton')
+    if (lastBook.get('read?')=='on'){
+      newBookRead.classList.add('read')
+    } else {
+      newBookRead.classList.add('notread')
+    }
+    
     newBook.appendChild(newBookRead);
 
     const deleteButton = document.createElement('button'); //button element
@@ -43,6 +51,7 @@ function displayBooks(){
     newBook.classList.add('book');
     books.appendChild(newBook);
     addEventLs()
+    readingButtons()
 }
 
     
@@ -73,8 +82,13 @@ const submit = document.querySelector('.submit');
 submit.addEventListener('click', function(e){
     const form = document.querySelector('form');
     const data = new FormData(form);
-    myLibrary.push(data)
-    displayBooks()
+    console.log([...data.entries()])
+    if (![...data.values()].includes('')){
+      form.reset()
+      myLibrary.push(data)
+      displayBooks()
+    }
+    
 })
 
 // add eventlistener to the delete buttons on cards and delete the card when clicked
@@ -92,4 +106,18 @@ function deleteCard(id){
   
   myLibrary.splice(-1);
   console.log(myLibrary)
+}
+
+
+//change the state of reading
+function readingButtons(){
+  readButton = document.querySelectorAll('.readbutton')[document.querySelectorAll('.readbutton').length -1];
+  readButton.addEventListener('click', (e)=>{
+  console.log([...e.target.classList.values()])
+  if([...e.target.classList.values()].includes('read')){
+    e.target.classList.remove('read')
+  } else {
+    e.target.classList.add('read')
+  }
+})
 }
