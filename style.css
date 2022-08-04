@@ -9,7 +9,7 @@ body {
 .header {
     display: flex;
     padding: 3vh;
-    background-color: wheat;
+    background-color: #a1a1aa;
     justify-content: center;
     font-size: 50px;
 }
@@ -24,29 +24,42 @@ body {
 
 
 .readBooks{
-    min-height: 24vh;
-    padding: 15px;
+    min-height: 30vh;
+    padding: 2vw;
     width: 70vw;
     overflow: auto;
     display: grid;
-    background-color: skyblue;
+    background-color: rgb(228, 228, 231);
+    border:1px solid black;
+    border-left:50px solid transparent;
+    border-right:50px solid transparent;
     gap: 15px;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
 }
+
 .book{
-    padding: 10px;
-    background-color: orange;
+    padding: 10px 30px 10px 30px;
+    background-color: #78716c;
     height: calc(28vh*1.4);
-    width: calc(15vw+100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid black;
+}
+
+.secondDiv{
+    display: flex;
+    justify-content: center;
 }
 #form{
+    border: 1px solid black;
+    border-radius: 10px;
     width: 30vw;
     padding: 15px;
-    background-color: palegoldenrod;
+    background-color: rgb(214, 211, 170);
     display: none;
     flex-direction: column;
     gap: 15px;
-    
 }
 
 form>div{
@@ -58,11 +71,24 @@ label {
     display: inline-block;
     width: 150px;
 }
+
 #checkbox{
+    display: flex;
     justify-content: space-between;
 }
+
+#submit{
+    display: flex;
+    justify-content: center;
+}
+
+.submit{
+    border-radius: 5px;
+    padding: 0vw 2vw 0vw 2vw;
+}
+
 .addBook{
-    
+    border-radius: 5px;
     width: max(50px,15vw);
     height: 35px;
     justify-content: center;
@@ -73,9 +99,12 @@ label {
     flex-direction: column;
     align-items: center;
     width: 50vw;
+    gap: 15px;
 }
+
 .readbutton{
     background-color: red;
+    border: 0;
 }
 .read{
     background-color: green;

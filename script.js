@@ -3,7 +3,6 @@ let idNum = 0;
 
 
 
-
 function displayBooks(){
     
     let lastBook = myLibrary[myLibrary.length-1]
@@ -12,21 +11,24 @@ function displayBooks(){
 
     //we create a new book card
     const newBook = document.createElement('div'); 
-
+    const newBookdiv1 = document.createElement('div');
     const newBookh1 =  document.createElement('h1'); //h1 header
     const h1 = document.createTextNode(lastBook.get('title'))
     newBookh1.appendChild(h1)
-    newBook.appendChild(newBookh1);
+    newBookdiv1.appendChild(newBookh1);
 
     const newBookAuth = document.createElement('h2'); //h2 author nameplate
     const auth = document.createTextNode(lastBook.get('author'));
     newBookAuth.appendChild(auth);
-    newBook.appendChild(newBookAuth);
+    newBookdiv1.appendChild(newBookAuth);
 
     const newBookPages = document.createElement('p'); // paragraph element
     const pages = document.createTextNode(lastBook.get('pages'));
     newBookPages.appendChild(pages);
-    newBook.appendChild(newBookPages);
+    newBookdiv1.appendChild(newBookPages);
+    newBook.appendChild(newBookdiv1);
+
+    const newBookdiv2 = document.createElement('div');
 
     const newBookRead = document.createElement('button'); //button element
     newBookRead.textContent = 'Already read?';
@@ -38,13 +40,15 @@ function displayBooks(){
       newBookRead.classList.add('notread')
     }
     
-    newBook.appendChild(newBookRead);
+    newBookdiv2.appendChild(newBookRead);
 
     const deleteButton = document.createElement('button'); //button element
     deleteButton.classList.add('delete')
     deleteButton.setAttribute('id', idNum)
     deleteButton.textContent = 'Delete';
-    newBook.appendChild(deleteButton);
+    newBookdiv2.appendChild(deleteButton);
+    newBookdiv2.classList.add('secondDiv')
+    newBook.appendChild(newBookdiv2);
 
     newBook.setAttribute('id', idNum);
     idNum += 1;
@@ -56,10 +60,6 @@ function displayBooks(){
 
     
   
-
-
-
-
 // Add eventlistener to the button, so if it's clicked, form will show up.
 const addBook = document.querySelector('.addBook');
 addBook.addEventListener('click', ()=>{
@@ -91,7 +91,17 @@ submit.addEventListener('click', function(e){
     
 })
 
+
+
 // add eventlistener to the delete buttons on cards and delete the card when clicked
+function deleteCard(id){
+  const divToRemove = document.getElementById(id);
+  divToRemove.remove()
+  
+  myLibrary.splice(-1);
+  console.log(myLibrary)
+}
+
 function addEventLs(){
   const deleteButtons = document.querySelectorAll('.delete')[document.querySelectorAll('.delete').length -1];
   deleteButtons.addEventListener('click', (e) => {
@@ -100,13 +110,6 @@ function addEventLs(){
 })
 }
 
-function deleteCard(id){
-  const divToRemove = document.getElementById(id);
-  divToRemove.remove()
-  
-  myLibrary.splice(-1);
-  console.log(myLibrary)
-}
 
 
 //change the state of reading
